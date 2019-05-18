@@ -3,16 +3,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            <h4 style="margin-top: 2em;">Total Todo Count: {{ todos.length }}</h4>
             <ul class="list-group">
                 <li class="list-group-item" v-for="item in todos">
                 {{ item.name }}
                 <div class="btn-group">
-                <button type="button" @click="remove(item.id)" class="btn btn-primary btn-sm">
+                <button type="button" @click="remove(item.id)" class="btn btn-danger btn-sm">
                 <i class="fas fa-trash-alt"></i>Remove</button>
-                <button type="button" @click="complete(item)" class="btn btn-primary btn-sm">
+                <button type="button complete" @click="complete(item)" class="btn btn-success btn-sm">
                 <i class="fas fa-check"></i>Complete</button>
-                 <button type="button" @click="edit(item)" class="btn btn-primary btn-sm">
-                <i class="fas fa-pen"></i>Edit</button>
             </div>
                 </li>
             </ul>
@@ -23,6 +22,7 @@
 </template>
 <script>
 export default {
+    
     computed: {
         todos() {
             return this.$store.getters.gettodo
@@ -35,7 +35,7 @@ export default {
         complete(todo) {
             this.$store.dispatch('completedToDo', todo)
         },
-
+        
     }
 }
 </script>
@@ -48,7 +48,9 @@ i {
     padding-left: 0.5em;
     padding-right: 0.5em;
 }
-
+.complete:hover {
+    background-color: green;
+}
 
 
 </style>

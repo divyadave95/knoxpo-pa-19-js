@@ -36,7 +36,7 @@ export default new Vuex.Store({
     },
     REMOVE_TODO(state, payload) {
       var index = state.todo.findIndex(todo => todo.id === payload);
-            state.todo.splice(index, 1);
+      state.todo.splice(index, 1);
     },
     EDIT_TODO(state, payload) {
       state.todo.name = payload.name
