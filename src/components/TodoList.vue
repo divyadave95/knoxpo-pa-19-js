@@ -4,9 +4,14 @@
     <div class="row">
         <div class="col-md-12">
             <h4 style="margin-top: 2em;">Total Todo Count: {{ todos.length }}</h4>
-            <ul class="list-group">
-                <li class="list-group-item" v-for="item in todos">
-                {{ item.name }}
+             <div v-for="item in todos">
+            <div v-if="!editing">
+      <span class='text' @click="enableEditing">{{ item.name }}</span>
+    </div>
+    <div v-if="editing">
+      <ul class="list-group">
+          <li class="list-item-group">
+          <input v-model="tempValue" class="input"/>
                 <div class="btn-group">
                 <button type="button" @click="remove(item.id)" class="btn btn-danger btn-sm">
                 <i class="fas fa-trash-alt"></i>Remove</button>
@@ -15,6 +20,8 @@
             </div>
                 </li>
             </ul>
+    </div>
+             </div>
     
 </div>
     </div>
@@ -22,6 +29,12 @@
 </template>
 <script>
 export default {
+    data() {
+        return {
+            editvalue: 'Please Edit',
+            editing: false
+        }
+    },
     
     computed: {
         todos() {
@@ -35,6 +48,9 @@ export default {
         complete(todo) {
             this.$store.dispatch('completedToDo', todo)
         },
+         enableEditing: function(){
+         this.editing = true;
+    },
         
     }
 }
