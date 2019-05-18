@@ -11,7 +11,7 @@
     <div v-if="editing">
       <ul class="list-group">
           <li class="list-item-group">
-          <input v-model="tempValue" class="input"/>
+          <input v-model="title" class="input"/>
                 <div class="btn-group">
                 <button type="button" @click="remove(item.id)" class="btn btn-danger btn-sm">
                 <i class="fas fa-trash-alt"></i>Remove</button>
@@ -32,7 +32,8 @@ export default {
     data() {
         return {
             editvalue: 'Please Edit',
-            editing: false
+            editing: false,
+            title: null
         }
     },
     
@@ -48,7 +49,7 @@ export default {
         complete(todo) {
             this.$store.dispatch('completedToDo', todo)
         },
-         enableEditing: function(){
+        enableEditing() {
          this.editing = true;
     },
         
